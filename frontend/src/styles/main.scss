@@ -1,0 +1,112 @@
+@import './variables';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #f0f2f8;
+  font-family: 'Inter', sans-serif;
+  color: $dark;
+  line-height: 1.6;
+    user-select: none; 
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 36px;
+  border: none;
+  border-radius: $radius;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: $transition;
+  text-align: center;
+  text-decoration: none;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.btn-primary {
+  background: $primary;
+  color: $white;
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+.btn-primary:hover { background: $primary-dark; }
+
+.btn-secondary {
+  background: $secondary;
+  color: $white;
+}
+.btn-secondary:hover { background: darken($secondary, 10%); }
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid $primary;
+  color: $primary;
+}
+.btn-outline:hover { background: $primary; color: $white; }
+
+.card {
+  background: $white;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  padding: 32px;
+  transition: $transition;
+}
+.card:hover { transform: translateY(-4px); }
+
+.input-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.input-group input,
+.input-group select {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 18px;
+  border: 2px solid #dfe6e9;
+  border-radius: $radius;
+  font-size: 1rem;
+  transition: $transition;
+}
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: $primary;
+  box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-in { animation: fadeInUp 0.8s ease forwards; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
