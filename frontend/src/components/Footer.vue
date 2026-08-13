@@ -3,7 +3,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-copy">
-          <p>&copy; {{ new Date().getFullYear() }} AI CRO Auditor. {{ $t('footer.rights') }}</p>
+          <p>&copy; {{ new Date().getFullYear() }} AI CRO Auditor.IlyaGovoruxin {{ $t('footer.rights') }}</p>
         </div>
         <div class="footer-links">
           <router-link to="/offer">{{ $t('footer.offer') }}</router-link>

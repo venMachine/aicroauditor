@@ -5,7 +5,20 @@ const AuditSchema = new mongoose.Schema({
   url: { type: String, required: true },
   score: { type: Number, min: 0, max: 100 },
   
-  // Старый формат
+  // 👇 ЯЗЫК
+  language: { 
+    type: String, 
+    enum: ['ru', 'en'], 
+    default: 'ru',
+    required: true 
+  },
+  
+  originalLanguage: { 
+    type: String, 
+    enum: ['ru', 'en'], 
+    default: 'ru' 
+  },
+  
   recommendations: [{
     category: String,
     priority: { type: String, enum: ['Critical', 'High', 'Medium', 'Low'] },
@@ -13,7 +26,6 @@ const AuditSchema = new mongoose.Schema({
     suggestion: String
   }],
   
-  // ===== МЕТРИКИ =====
   metrics: {
     performance: { type: Number, default: 0 },
     accessibility: { type: Number, default: 0 },
@@ -26,13 +38,23 @@ const AuditSchema = new mongoose.Schema({
     fcp: { type: String, default: 'нет данных' }
   },
   
-  // ===== ПОЛНЫЙ ОТВЕТ AI =====
   fullReport: {
     type: mongoose.Schema.Types.Mixed,
     default: {}
   },
   
-  createdAt: { type: Date, default: Date.now }
+  // 👇 ПЕРЕВОДЫ
+  translations: {
+    en: { type: mongoose.Schema.Types.Mixed, default: null },
+    ru: { type: mongoose.Schema.Types.Mixed, default: null }
+  },
+  
+  createdAt: { type: Date, default: Date.now },
+  lastTranslatedAt: { type: Date, default: null }
 })
+
+AuditSchema.index({ userId: 1, createdAt: -1 })
+AuditSchema.index({ userId: 1, language: 1 })
+AuditSchema.index({ url: 1 })
 
 module.exports = mongoose.model('Audit', AuditSchema)

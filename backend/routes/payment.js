@@ -1,59 +1,84 @@
 const express = require('express')
-const auth = require('../middleware/auth')
-const Payment = require('../models/Payment')
-const User = require('../models/User')
-const { v4: uuidv4 } = require('uuid')
-
 const router = express.Router()
+const auth = require('../middleware/auth')
+const User = require('../models/User')
+const LemonSqueezyService = require('../services/lemonSqueezyService')
 
+const lemonService = new LemonSqueezyService()
+
+// ===== СОЗДАНИЕ ПЛАТЕЖА (Lemon Squeezy) =====
 router.post('/create', auth, async (req, res) => {
   try {
     const { plan } = req.body
-    const amount = plan === 'single' ? 999 : 2990
+    const userId = req.userId
 
-    const payment = new Payment({
-      userId: req.userId,
-      amount,
-      plan,
-      status: 'pending',
-      externalId: uuidv4()
-    })
-    await payment.save()
+    const plans = {
+      single: { variantId: process.env.LEMON_SQUEEZY_PRODUCT_ID_SINGLE },
+      monthly: { variantId: process.env.LEMON_SQUEEZY_PRODUCT_ID_MONTHLY }
+    }
+
+    const planData = plans[plan]
+    if (!planData) {
+      return res.status(400).json({ error: 'Неверный план' })
+    }
+
+    const result = await lemonService.createCheckout(
+      planData.variantId,
+      userId,
+      plan
+    )
+
+    if (!result.success) {
+      return res.status(400).json({ error: result.error })
+    }
 
     res.json({
-      paymentId: payment._id,
-      paymentUrl: `${process.env.FRONTEND_URL}/dashboard?mock_payment=${payment._id}`
+      paymentUrl: result.checkoutUrl,
+      paymentId: result.checkoutId
     })
-  } catch (err) {
-    res.status(500).json({ error: err.message })
+
+  } catch (error) {
+    console.error(' Ошибка создания платежа:', error)
+    res.status(500).json({ error: 'Ошибка создания платежа' })
   }
 })
 
-router.post('/mock-success', auth, async (req, res) => {
+// ===== ВЕБХУК ДЛЯ LEMON SQUEEZY =====
+router.post('/webhook/lemonsqueezy', async (req, res) => {
   try {
-    const { paymentId } = req.body
-    const payment = await Payment.findOne({ _id: paymentId, userId: req.userId })
-    if (!payment) return res.status(404).json({ error: 'Payment not found' })
+    const signature = req.headers['x-signature']
+    const result = LemonSqueezyService.handleWebhook(req.body, signature)
 
-    payment.status = 'succeeded'
-    await payment.save()
+    if (!result.success) {
+      return res.status(400).json({ error: result.error })
+    }
 
-    const user = await User.findById(req.userId)
-    user.credits += payment.plan === 'single' ? 1 : 5
-    await user.save()
+    // Если есть userId - начисляем кредиты
+    if (result.userId) {
+      const user = await User.findById(result.userId)
+      
+      if (user) {
+        const credits = result.plan === 'single' ? 1 : 5
+        user.credits += credits
+        await user.save()
+        console.log(` Пользователь ${result.userId} получил ${credits} кредитов (Lemon Squeezy)`)
+      }
+    }
 
-    res.json({ success: true, credits: user.credits })
-  } catch (err) {
-    res.status(500).json({ error: err.message })
+    res.status(200).json({ success: true })
+
+  } catch (error) {
+    console.error('❌ Ошибка вебхука Lemon Squeezy:', error)
+    res.status(500).json({ error: 'Internal error' })
   }
 })
 
+// ===== ПРОВЕРКА СТАТУСА ПЛАТЕЖА =====
 router.get('/status/:id', auth, async (req, res) => {
   try {
-    const payment = await Payment.findOne({ _id: req.params.id, userId: req.userId })
-    res.json({ status: payment?.status || 'not_found' })
-  } catch (err) {
-    res.status(500).json({ error: err.message })
+    res.json({ status: 'pending' })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
   }
 })
 
