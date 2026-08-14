@@ -275,7 +275,7 @@
   "unknown_error": "Unknown error",
   "single": {
     "title": "One-time",
-    "price": "14$",
+    "price": "11$",
     "features": [
       "1 audit",
       "Detailed report with recommendations"
@@ -283,7 +283,7 @@
   },
   "monthly": {
     "title": "Subscription",
-    "price": "40$",
+    "price": "33$",
     "period": "/month",
     "features": [
       "5 audits",
