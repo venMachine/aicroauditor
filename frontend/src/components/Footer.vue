@@ -9,6 +9,7 @@
           <router-link to="/offer">{{ $t('footer.offer') }}</router-link>
           <router-link to="/contacts">{{ $t('footer.contacts') }}</router-link>
           <router-link to="/privacy">{{ $t('footer.privacy') }}</router-link>
+          <router-link to="/requisites">{{ $t('footer.requisites') }}</router-link>
         </div>
       </div>
     </div>

@@ -103,12 +103,7 @@
     "btn": "Increase conversions",
     "note": "No card. No risk."
   },
-  "footer": {
-    "rights": "All rights reserved",
-    "offer": "Public offer",
-    "contacts": "Contacts",
-    "privacy": "Privacy policy"
-  },
+
   "auth": {
     "login": {
       "title": "Sign In",
@@ -336,6 +331,25 @@
   "subtitle": "Video demonstration of the whole process in 2 minutes",
   "try_now": "Try it",
   "video_not_supported": "Your browser does not support the video"
+},
+  "footer": {
+    "rights": "All rights reserved",
+    "offer": "Public offer",
+    "contacts": "Contacts",
+    "privacy": "Privacy policy",
+    "requisites": "Requisites"
+  },
+"requisites": {
+  "title": "Requisites",
+  "individual": "Individual Entrepreneur Requisites",
+  "inn": "INN (Tax ID)",
+  "full_name": "Full Name",
+  "ogrnip": "OGRNIP",
+  "bank": "Bank Requisites",
+  "bank_name": "Bank Name",
+  "bik": "BIC",
+  "account": "Bank Account",
+  "correspondent_account": "Correspondent Account"
 }
 }
 

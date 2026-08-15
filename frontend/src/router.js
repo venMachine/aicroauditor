@@ -10,7 +10,8 @@ const routes = [
   { path: '/audit/:id', component: () => import('./views/AuditResult.vue'), meta: { auth: true } },
   { path: '/offer', component: () => import('./views/Offer.vue') },
   { path: '/contacts', component: () => import('./views/Contacts.vue') },
-  { path: '/privacy', component: () => import('./views/Privacy.vue') }
+  { path: '/privacy', component: () => import('./views/Privacy.vue') },
+  { path: '/requisites', component: () => import('./views/Requisites.vue') }
 ]
 
 const router = createRouter({
