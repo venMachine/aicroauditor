@@ -5,11 +5,11 @@
       <div class="content">
         <div class="contact-item">
           <span class="label">{{ $t('contacts.email') }}</span>
-          <span class="value">support@aicrorauditor.com</span>
+          <span class="value">govoruxin4@mail.ru</span>
         </div>
         <div class="contact-item">
           <span class="label">{{ $t('contacts.telegram') }}</span>
-          <span class="value">@ai_cro_auditor</span>
+          <span class="value">@IlyaBaracuda</span>
         </div>
         <div class="contact-item">
           <span class="label">{{ $t('contacts.response_time') }}</span>

@@ -103,7 +103,6 @@
     "btn": "Increase conversions",
     "note": "No card. No risk."
   },
-
   "auth": {
     "login": {
       "title": "Sign In",
@@ -139,7 +138,7 @@
       "analyze": "Analyze",
       "analyzing": "Analyzing...",
       "analyzing_title": "Analyzing website",
-      "analyzing_desc": "This may take 5-15 minutes depending on page size",
+      "analyzing_desc": "This may take 5-20 minutes depending on page size",
       "analyzing_progress": "Please do not close the page",
       "no_credits": "Out of credits.",
       "refill": "Refill",
@@ -263,75 +262,64 @@
     }
   },
   "pricing": {
-  "title": "Choose a plan",
-  "popular": "Popular",
-  "pay": "Pay",
-  "error": "Error",
-  "unknown_error": "Unknown error",
-  "single": {
-    "title": "One-time",
-    "price": "11$",
-    "features": [
-      "1 audit",
-      "Detailed report with recommendations"
-    ]
+    "title": "Choose a plan",
+    "popular": "Popular",
+    "pay": "Pay",
+    "error": "Error",
+    "unknown_error": "Unknown error",
+    "single": {
+      "title": "One-time Audit",
+      "price": "$11",
+      "description": "Full technical audit of one website with 40+ parameters checked: Core Web Vitals performance, SEO optimization, usability and accessibility. You will receive a structured report with prioritized recommendations — from critical issues to fine-tuning improvements. Traffic and conversion growth forecast, 4-week implementation roadmap. Everything you need to turn your website into a source of stable organic traffic."
+    },
+    "monthly": {
+      "title": "Subscription",
+      "price": "$33",
+      "period": "/month",
+     "description": "Monthly audit of up to 5 websites with extended analysis: technical metrics, SEO strategy, UX/UI, competitor benchmarking. Priority report processing within 24 hours, personalized recommendations for each project. Includes weekly monitoring, competitor comparison and API access for integration with your systems. Perfect for agencies, SEO professionals and marketing teams managing multiple projects."
+    }
   },
-  "monthly": {
-    "title": "Subscription",
-    "price": "33$",
-    "period": "/month",
-    "features": [
-      "5 audits",
-      "Priority support"
-    ]
-  }
-},
-"offer": {
-  "title": "Public Offer",
-  "general": " General Provisions",
-  "general_text": "1.1. This public offer (hereinafter — 'Offer') is an official proposal  to any individual or legal entity (hereinafter — 'Customer') to conclude an agreement for the provision of website auditing services using artificial intelligence.\n\n1.2. The Offer comes into force from the moment of publication on the website https://aicrorauditor.com and is valid until the moment of its withdrawal by the Executor.\n\n1.3. Acceptance of the Offer is the payment by the Customer for the Executor's services in accordance with Section 4 of this Offer.",
-  
-  "services": "Subject of the Agreement",
-  "services_text": "2.1. The Executor undertakes to provide the Customer with services for AI-audit of the website (hereinafter — 'Services'), and the Customer undertakes to pay for these Services.\n\n2.2. Composition of Services: website analysis using neural networks, identification of technical, SEO and UX/UI issues, preparation of a report with recommendations for improvement.\n\n",
-  
-  "payment": "Payment Procedure",
-  "payment_text": "3.1. The cost of Services is determined according to the current tariffs published on the Executor's website.\n\n3.2. Payment is made with 100% prepayment through the payment system specified on the website.\n\n3.3. The moment of payment is the receipt of funds to the Executor's bank account.\n\n",
-  
-  "responsibility": "Liability of the Parties",
-  "responsibility_text": "4.1. The Executor is not liable for:\n- the results of the Customer's use of recommendations obtained during the audit;\n- losses arising from the Customer's actions or inactions;\n- technical failures and interruptions in the operation of the service not related to the Executor's actions;\n- incompatibility of the provided recommendations with the technical features of the Customer's website;\n- lost profits, indirect losses and other consequences arising from the provision of Services.\n\n4.2. The Customer is responsible for:\n- the accuracy of the information provided about the website;\n- compliance with the rights of third parties when using the website;\n- use of recommendations at their own discretion.\n\n4.3. In case of disputes, the parties undertake to resolve them through negotiations. If agreement is not reached, the dispute is referred to the court at the location of the Executor.\n\n4.4. The total liability of the Executor under this Offer is limited to the cost of paid but not rendered Services.",
-  
-  "final": "5. Final Provisions",
-  "final_text": "5.1. This Offer is governed by the legislation of the Russian Federation.\n\n5.2. All notices and messages under this Offer must be sent in writing by email.\n\n5.3. The Executor reserves the right to make changes to the Offer without prior notice to the Customer. The new version of the Offer comes into force from the moment of its publication on the website.\n\n5.4. The Customer confirms that they have read the terms of the Offer and accept them in full.",
-  
-  "back": "Back"
-},
-"contacts": {
-  "title": "Contacts",
-  "email": "Email",
-  "telegram": "Telegram",
-  "response_time": "Response time",
-  "response_time_value": "Within 24 hours"
-},
-"privacy": {
-  "title": "Privacy Policy",
-  "what_we_collect": "What we collect",
-  "what_we_collect_text": "We collect only data necessary for the operation of the service ...",
-  "how_we_use": "How we use data",
-  "how_we_use_text": "Data is used exclusively for providing audit services ...",
-  "data_security": "Data security",
-  "data_security_text": "We take all necessary measures to protect your data ...",
-  "third_party": "Transfer to third parties",
-  "third_party_text": "We do not transfer your data to third parties, except as required by law ...",
-  "contact": "Privacy contacts",
-  "contact_text": "For all privacy-related questions, please contact: privacy@aicrorauditor.com"
-},
-"audit_demo": {
-  "badge": "How it works",
-  "title": "See how the audit works",
-  "subtitle": "Video demonstration of the whole process in 2 minutes",
-  "try_now": "Try it",
-  "video_not_supported": "Your browser does not support the video"
-},
+  "offer": {
+    "title": "Public Offer",
+    "general": "General Provisions",
+    "general_text": "1.1. This public offer is an official proposal to any individual or legal entity to conclude an agreement for the provision of website auditing services using artificial intelligence.\n\n1.2. The Offer comes into force from the moment of publication on the website https://aicrorauditor.com and is valid until the moment of its withdrawal by the Executor.\n\n1.3. Acceptance of the Offer is the payment by the Customer for the Executor's services in accordance with Section 4 of this Offer.",
+    "services": "Subject of the Agreement",
+    "services_text": "2.1. The Executor undertakes to provide the Customer with services for AI-audit of the website, and the Customer undertakes to pay for these Services.\n\n2.2. Composition of Services: website analysis using neural networks, identification of technical, SEO and UX/UI issues, preparation of a report with recommendations for improvement.",
+    "payment": "Payment Procedure",
+    "payment_text": "3.1. The cost of Services is determined according to the current tariffs published on the Executor's website.\n\n3.2. Payment is made with 100% prepayment through the payment system specified on the website.\n\n3.3. The moment of payment is the receipt of funds to the Executor's bank account.",
+    "responsibility": "Liability of the Parties",
+    "responsibility_text": "4.1. The Executor is not liable for:\n- the results of the Customer's use of recommendations obtained during the audit;\n- losses arising from the Customer's actions or inactions;\n- technical failures and interruptions in the operation of the service not related to the Executor's actions;\n- incompatibility of the provided recommendations with the technical features of the Customer's website;\n- lost profits, indirect losses and other consequences arising from the provision of Services.\n\n4.2. The Customer is responsible for:\n- the accuracy of the information provided about the website;\n- compliance with the rights of third parties when using the website;\n- use of recommendations at their own discretion.\n\n4.3. In case of disputes, the parties undertake to resolve them through negotiations. If agreement is not reached, the dispute is referred to the court at the location of the Executor.\n\n4.4. The total liability of the Executor under this Offer is limited to the cost of paid but not rendered Services.",
+    "final": "Final Provisions",
+    "final_text": "5.1. This Offer is governed by the legislation of the Russian Federation.\n\n5.2. All notices and messages under this Offer must be sent in writing by email.\n\n5.3. The Executor reserves the right to make changes to the Offer without prior notice to the Customer. The new version of the Offer comes into force from the moment of its publication on the website.\n\n5.4. The Customer confirms that they have read the terms of the Offer and accept them in full.",
+    "back": "Back"
+  },
+  "contacts": {
+    "title": "Contacts",
+    "email": "Email",
+    "telegram": "Telegram",
+    "response_time": "Response time",
+    "response_time_value": "Within 24 hours"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "what_we_collect": "What we collect",
+    "what_we_collect_text": "We collect only data necessary for the operation of the service.",
+    "how_we_use": "How we use data",
+    "how_we_use_text": "Data is used exclusively for providing audit services.",
+    "data_security": "Data security",
+    "data_security_text": "We take all necessary measures to protect your data.",
+    "third_party": "Transfer to third parties",
+    "third_party_text": "We do not transfer your data to third parties, except as required by law.",
+    "contact": "Privacy contacts",
+    "contact_text": "For all privacy-related questions, please contact: privacy@aicrorauditor.com"
+  },
+  "audit_demo": {
+    "badge": "How it works",
+    "title": "See how the audit works",
+    "subtitle": "Video demonstration of the whole process in 2 minutes",
+    "try_now": "Try it",
+    "video_not_supported": "Your browser does not support the video"
+  },
   "footer": {
     "rights": "All rights reserved",
     "offer": "Public offer",
@@ -339,17 +327,16 @@
     "privacy": "Privacy policy",
     "requisites": "Requisites"
   },
-"requisites": {
-  "title": "Requisites",
-  "individual": "Individual Entrepreneur Requisites",
-  "inn": "INN (Tax ID)",
-  "full_name": "Full Name",
-  "ogrnip": "OGRNIP",
-  "bank": "Bank Requisites",
-  "bank_name": "Bank Name",
-  "bik": "BIC",
-  "account": "Bank Account",
-  "correspondent_account": "Correspondent Account"
+  "requisites": {
+    "title": "Requisites",
+    "individual": "Individual Entrepreneur Requisites",
+    "inn": "INN (Tax ID)",
+    "full_name": "Full Name",
+    "ogrnip": "OGRNIP",
+    "bank": "Bank Requisites",
+    "bank_name": "Bank Name",
+    "bik": "BIC",
+    "account": "Bank Account",
+    "correspondent_account": "Correspondent Account"
+  }
 }
-}
-
