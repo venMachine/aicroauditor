@@ -2,19 +2,27 @@ const express = require('express')
 const router = express.Router()
 const auth = require('../middleware/auth')
 const User = require('../models/User')
-const LemonSqueezyService = require('../services/lemonsqueezyService')
+// const LemonSqueezyService = require('../services/lemonsqueezyService') // 👈 ВРЕМЕННО ОТКЛЮЧИЛИ
+const YooKassaService = require('../services/yookassaService')
 
-const lemonService = new LemonSqueezyService()
+// const lemonService = new LemonSqueezyService() // 👈 ВРЕМЕННО ОТКЛЮЧИЛИ
+const yookassaService = new YooKassaService()
 
-// ===== СОЗДАНИЕ ПЛАТЕЖА (Lemon Squeezy) =====
+// ===== СОЗДАНИЕ ПЛАТЕЖА =====
 router.post('/create', auth, async (req, res) => {
   try {
-    const { plan } = req.body
+    const { plan } = req.body // currency больше не нужен
     const userId = req.userId
 
     const plans = {
-      single: { variantId: process.env.LEMON_SQUEEZY_PRODUCT_ID_SINGLE },
-      monthly: { variantId: process.env.LEMON_SQUEEZY_PRODUCT_ID_MONTHLY }
+      single: { 
+        amount: 999, 
+        label: 'Разовый аудит'
+      },
+      monthly: { 
+        amount: 2990,
+        label: 'Подписка на месяц'
+      }
     }
 
     const planData = plans[plan]
@@ -22,8 +30,10 @@ router.post('/create', auth, async (req, res) => {
       return res.status(400).json({ error: 'Неверный план' })
     }
 
-    const result = await lemonService.createCheckout(
-      planData.variantId,
+    // 👇 ТОЛЬКО ЮKassa
+    const result = await yookassaService.createPayment(
+      planData.amount,
+      planData.label,
       userId,
       plan
     )
@@ -32,46 +42,54 @@ router.post('/create', auth, async (req, res) => {
       return res.status(400).json({ error: result.error })
     }
 
-    res.json({
-      paymentUrl: result.checkoutUrl,
-      paymentId: result.checkoutId
+    return res.json({
+      paymentUrl: result.paymentUrl,
+      paymentId: result.paymentId,
+      provider: 'yookassa'
     })
 
   } catch (error) {
-    console.error(' Ошибка создания платежа:', error)
+    console.error('❌ Ошибка создания платежа:', error)
     res.status(500).json({ error: 'Ошибка создания платежа' })
   }
 })
 
-// ===== ВЕБХУК ДЛЯ LEMON SQUEEZY =====
-router.post('/webhook/lemonsqueezy', async (req, res) => {
+// ===== ВЕБХУК ЮKASSA =====
+router.post('/webhook/yookassa', async (req, res) => {
   try {
-    const signature = req.headers['x-signature']
-    const result = LemonSqueezyService.handleWebhook(req.body, signature)
-
-    if (!result.success) {
-      return res.status(400).json({ error: result.error })
-    }
-
-    // Если есть userId - начисляем кредиты
-    if (result.userId) {
-      const user = await User.findById(result.userId)
+    const event = req.body
+    
+    if (event.object && event.object.status) {
+      const result = await yookassaService.handleWebhook(event)
       
-      if (user) {
-        const credits = result.plan === 'single' ? 1 : 5
-        user.credits += credits
-        await user.save()
-        console.log(` Пользователь ${result.userId} получил ${credits} кредитов (Lemon Squeezy)`)
+      if (!result.success) {
+        return res.status(400).json({ error: result.error })
+      }
+
+      if (result.userId) {
+        const user = await User.findById(result.userId)
+        
+        if (user) {
+          const credits = result.plan === 'single' ? 1 : 5
+          user.credits += credits
+          await user.save()
+          console.log(`✅ Пользователь ${result.userId} получил ${credits} кредитов (ЮKassa)`)
+        }
       }
     }
 
     res.status(200).json({ success: true })
 
   } catch (error) {
-    console.error('❌ Ошибка вебхука Lemon Squeezy:', error)
+    console.error('❌ Ошибка вебхука ЮKassa:', error)
     res.status(500).json({ error: 'Internal error' })
   }
 })
+
+//  ВЕБХУК LEMON SQUEEZY — ВРЕМЕННО ОТКЛЮЧИЛИ
+// router.post('/webhook/lemonsqueezy', async (req, res) => {
+//   ...
+// })
 
 // ===== ПРОВЕРКА СТАТУСА ПЛАТЕЖА =====
 router.get('/status/:id', auth, async (req, res) => {
@@ -83,3 +101,4 @@ router.get('/status/:id', auth, async (req, res) => {
 })
 
 module.exports = router
+
