@@ -286,7 +286,8 @@ async function auditWebsite(url, pageData, metrics, language = 'ru') {
         { role: 'user', content: prompt }
       ],
       max_tokens: 100000,
-      temperature: 0.3
+      temperature: 0.3,
+       timeout: 180000
     })
 
     const content = response.choices[0].message.content
