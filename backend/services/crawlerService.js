@@ -1,7 +1,11 @@
 const puppeteer = require('puppeteer')
 
 async function captureAndExtract(url) {
-  const browser = await puppeteer.launch({ headless: 'new' })
+
+  const browser = await puppeteer.launch({ 
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  })
   const page = await browser.newPage()
   await page.setViewport({ width: 1920, height: 1080 })
 
@@ -13,7 +17,6 @@ async function captureAndExtract(url) {
       const buttons = Array.from(document.querySelectorAll('button, a.button, .btn')).map(el => el.innerText.trim())
       const paragraphs = Array.from(document.querySelectorAll('p')).map(el => el.innerText.trim()).slice(0, 15)
       
-      // ===== НОВЫЕ ДАННЫЕ =====
       const metaTags = {
         title: document.querySelector('title')?.innerText || 'нет данных',
         description: document.querySelector('meta[name="description"]')?.getAttribute('content') || 'нет данных',
