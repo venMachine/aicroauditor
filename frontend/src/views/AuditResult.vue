@@ -18,7 +18,6 @@
             <span class="score-total">/ 100</span>
           </div>
 
-          <!-- Простой индикатор языка отчета -->
           <div class="language-indicator">
             <span class="label">{{ t('result.report_language') }}:</span>
             <span class="lang-badge">
@@ -311,10 +310,8 @@ const route = useRoute()
 const audit = ref(null)
 const loading = ref(true)
 
-// 👇 Текущий язык отчета (синхронизируется с глобальным locale)
 const currentReportLang = computed(() => locale.value || 'ru')
 
-// 👇 Данные отчета на текущем языке
 const reportData = computed(() => {
   if (!audit.value) return null
   if (audit.value.fullReport && Object.keys(audit.value.fullReport).length > 0) {
@@ -323,14 +320,12 @@ const reportData = computed(() => {
   return null
 })
 
-// 👇 Получение issues из executive_summary
 const getExecutiveSummaryIssues = () => {
   if (!reportData.value?.executive_summary) return []
   const summary = reportData.value.executive_summary
   return summary.top_5_critical_issues || summary.top_7_critical_issues || []
 }
 
-// ===== ХЕЛПЕРЫ =====
 const formatKey = (key) => key.toUpperCase()
 
 const formatRoadmapKey = (key) => {
@@ -366,7 +361,6 @@ const translateForecastKey = (key) => {
   return translations[key] || key.replace(/_/g, ' ').toUpperCase()
 }
 
-// ===== КЛАССЫ =====
 const getPriorityClass = (priority) => {
   if (!priority) return 'medium'
   const lower = String(priority).toLowerCase()
@@ -405,7 +399,6 @@ const getScoreClass = (score) => {
   return 'bad'
 }
 
-// ===== МЕТРИКИ =====
 const metricsList = [
   { key: 'performance' },
   { key: 'accessibility' },
@@ -417,7 +410,6 @@ const metricsList = [
   { key: 'inp' }
 ]
 
-// ===== ЗАГРУЗКА ДАННЫХ =====
 const fetchAudit = async (lang = locale.value) => {
   try {
     loading.value = true
@@ -435,10 +427,10 @@ const fetchAudit = async (lang = locale.value) => {
   }
 }
 
-// ===== СКАЧИВАНИЕ PDF =====
+// ===== СКАЧИВАНИЕ PDF (ИСПРАВЛЕНО) =====
 const downloadPDF = async () => {
   try {
-    const response = await axios.post(`/api/audit/${audit.value.id}/pdf`, {
+    const response = await axios.post(`/api/audit/${audit.value._id}/pdf`, {
       lang: currentReportLang.value
     }, {
       responseType: 'blob'
@@ -447,7 +439,7 @@ const downloadPDF = async () => {
     const url = window.URL.createObjectURL(new Blob([response.data]))
     const link = document.createElement('a')
     link.href = url
-    link.setAttribute('download', `audit-report-${audit.value.id}.pdf`)
+    link.setAttribute('download', `audit-report-${audit.value._id}.pdf`)
     document.body.appendChild(link)
     link.click()
     link.remove()
@@ -457,25 +449,21 @@ const downloadPDF = async () => {
   }
 }
 
-// ===== ЖИЗНЕННЫЙ ЦИКЛ =====
 onMounted(() => {
   const lang = locale.value || 'ru'
   fetchAudit(lang)
 })
 
-// 👇 Следим за сменой глобального языка в i18n (из Navbar)
 watch(locale, (newLang) => {
   if (audit.value) {
     fetchAudit(newLang)
   }
 })
 
-// 👇 Следим за изменением ID в URL
 watch(() => route.params.id, () => {
   fetchAudit(locale.value)
 })
 </script>
-
 <style lang="scss" scoped>
 // ===== ОСНОВНЫЕ СТИЛИ =====
 .result { padding: 40px 0; }

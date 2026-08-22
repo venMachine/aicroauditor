@@ -2,7 +2,7 @@
   <div class="home">
     <HeroSection />
     <StatsSection />
-    <AuditDemo />
+    <Pricing :isHero="true" />
     <FeaturesSection />
     <ChartsSection />
     <ReviewsSection />
@@ -13,7 +13,7 @@
 <script setup>
 import HeroSection from '@/components/HeroSection.vue'
 import StatsSection from '@/components/StatsSection.vue'
-import AuditDemo from '@/components/AuditDemo.vue'
+import Pricing from '@/views/Pricing.vue'
 import FeaturesSection from '@/components/FeaturesSection.vue'
 import ChartsSection from '@/components/ChartsSection.vue'
 import ReviewsSection from '@/components/ReviewsSection.vue'

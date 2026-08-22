@@ -129,38 +129,38 @@
       "or": "or"
     }
   },
-  "dashboard": {
-    "title": "Dashboard",
-    "credits": "credits",
-    "audit_form": {
-      "title": "Site Audit",
-      "placeholder": "https://your-site.com",
-      "analyze": "Analyze",
-      "analyzing": "Analyzing...",
-      "analyzing_title": "Analyzing website",
-      "analyzing_desc": "This may take 5-20 minutes depending on page size",
-      "analyzing_progress": "Please do not close the page",
-      "no_credits": "Out of credits.",
-      "refill": "Refill",
-      "url_required": "Please enter website URL",
-      "error": "Error",
-      "unknown_error": "Unknown error"
-    },
-    "history": {
-      "title": "Audit History",
-      "total": "Total",
-      "empty": "No audits yet",
-      "empty_hint": "Enter URL above and start analysis",
-      "score": "Score",
-      "details": "Details",
-      "pdf": "PDF",
-      "delete": "Delete",
-      "delete_confirm": "Delete this audit?",
-      "delete_error": "Delete error",
-      "pdf_error": "PDF generation error"
-    },
-    "payment_success": "Payment successful! Credits added."
+"dashboard": {
+  "title": "Dashboard",
+  "credits": "credits",
+  "audit_form": {
+    "title": "Site Audit",
+    "placeholder": "https://your-site.com",
+    "analyze": "Analyze",
+    "analyzing": "Analyzing...",
+    "analyzing_title": "Analyzing website",
+    "analyzing_desc": "This may take 5-20 minutes depending on page size",
+    "analyzing_progress": "Please do not close the page",
+    "no_credits": "Out of credits.",
+    "refill": "Refill",
+    "url_required": "Please enter website URL",
+    "error": "Error",
+    "unknown_error": "Unknown error"
   },
+  "history": {
+    "title": "Audit History",
+    "total": "Total",
+    "empty": "No audits yet",
+    "empty_hint": "Enter URL above and start analysis",
+    "score": "Score",
+    "details": "Details",
+    "pdf": "PDF",
+    "delete": "Delete",
+    "delete_confirm": "Delete this audit?",
+    "delete_error": "Delete error",
+    "pdf_error": "PDF generation error"
+  },
+  "payment_success": "Payment successful! Credits added."
+},
   "result": {
     "loading": "Loading...",
     "not_found": "Audit not found",
