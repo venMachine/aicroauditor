@@ -277,7 +277,7 @@ async function auditWebsite(url, pageData, metrics, language = 'ru') {
     
     
     const response = await openai.chat.completions.create({
-      model: 'claude-opus-5', 
+      model: 'claude-opus-5-fast', 
       messages: [
         { 
           role: 'system', 
